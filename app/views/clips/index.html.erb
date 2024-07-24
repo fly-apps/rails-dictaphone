@@ -1,0 +1,52 @@
+<%= turbo_stream_from "clips" %>
+
+<div class="wrapper">
+
+  <header>
+    <h1>Web dictaphone</h1>
+  </header>
+
+  <div id="main-controls" data-turbo-permanent>
+  <section class="main-controls" data-controller="main-controls" data-turbo-permanent>
+    <canvas class="visualizer" height="60px"></canvas>
+    <div id="buttons">
+      <button class="record">Record</button>
+      <button class="stop">Stop</button>
+    </div>
+  </section>
+  </div>
+
+  <section class="sound-clips">
+  <% @clips.each do |clip| -%>
+    <article class="clip" id="<%= dom_id clip %>">
+      <audio controls="" src="<%= clip.contents.url %>" preload="none"></audio>
+      <p><%= clip.name %></p>
+      <%= button_to "Delete", clip, method: :delete, class: "delete", form_class: 'delete' %>
+      <p class="text"><%= clip.text %></p>
+    </article>
+  <% end -%>
+  </section>
+
+</div>
+
+<label for="toggle">❔</label>
+<input type="checkbox" id="toggle">
+<aside>
+  <h2>Information</h2>
+
+  <p><a href="https://github.com/mdn/dom-examples/tree/main/media/web-dictaphone#web-dictaphone">Web dictaphone</a> is built using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator.getUserMedia">getUserMedia</a> and the <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder_API">MediaRecorder API</a>, which provides an easier way to capture Media streams.</p>
+
+  <p>Icon courtesy of <a href="http://findicons.com/search/microphone">Find Icons</a>. Thanks to <a href="http://soledadpenades.com/">Sole</a> for the Oscilloscope code!</p>
+
+  <hr>
+
+  <p>Rails Dictaphone adds:</p>
+
+  <ul>
+    <li><p><a href="https://guides.rubyonrails.org/active_record_basics.html">Active Record</a> with a <a href="https://www.postgresql.org/">PostgreSQL</a> database to persist an ordered list of clips</p></li>
+    <li><p><a href="https://edgeguides.rubyonrails.org/active_storage_overview.html">Active Storage</a> with a <a href="https://www.tigrisdata.com/">Tigris</a> bucket for storing audio files</p></li>
+    <li><p><a href="https://guides.rubyonrails.org/action_cable_overview.html">Action Cable<a> with <a href="https://upstash.com/">Upstash</a> Redis db and <a href=""https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API">WebSockets</a> for broadcasting updates</a></p></li>
+  </ul>
+
+  <p>Multiple replicas of this application can be deployed, even in multiple regions.</p>
+</aside>

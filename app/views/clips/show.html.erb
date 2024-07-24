@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @clip %>
+
+<div>
+  <%= link_to "Edit this clip", edit_clip_path(@clip) %> |
+  <%= link_to "Back to clips", clips_path %>
+
+  <%= button_to "Destroy this clip", @clip, method: :delete %>
+</div>

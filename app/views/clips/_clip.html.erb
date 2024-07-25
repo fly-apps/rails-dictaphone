@@ -1,12 +1,6 @@
-<div id="<%= dom_id clip %>">
-  <p>
-    <strong>Name:</strong>
-    <%= clip.name %>
-  </p>
-
-  <p>
-    <strong>Text:</strong>
-    <%= clip.text %>
-  </p>
-
-</div>
+<article class="clip" id="<%= dom_id clip %>">
+  <audio controls="" src="<%= clip.contents.url %>" preload="none"></audio>
+  <p><%= clip.name %></p>
+  <%= button_to "Delete", clip, method: :delete, class: "delete", form_class: 'delete' %>
+  <p class="text"><%= clip.text %></p>
+</article>

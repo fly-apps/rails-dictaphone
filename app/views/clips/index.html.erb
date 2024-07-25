@@ -17,14 +17,7 @@
   </div>
 
   <section class="sound-clips">
-  <% @clips.each do |clip| -%>
-    <article class="clip" id="<%= dom_id clip %>">
-      <audio controls="" src="<%= clip.contents.url %>" preload="none"></audio>
-      <p><%= clip.name %></p>
-      <%= button_to "Delete", clip, method: :delete, class: "delete", form_class: 'delete' %>
-      <p class="text"><%= clip.text %></p>
-    </article>
-  <% end -%>
+  <%= render @clips %>
   </section>
 
 </div>

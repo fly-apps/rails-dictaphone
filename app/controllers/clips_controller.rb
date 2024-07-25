@@ -5,6 +5,7 @@ class ClipsController < ApplicationController
   # GET /clips or /clips.json
   def index
     @clips = Clip.all
+    WhisperWakeJob.perform_later if ENV['WHISPER_URL']
   end
 
   # GET /clips/1 or /clips/1.json
@@ -32,6 +33,8 @@ class ClipsController < ApplicationController
     clip.save!
 
     render json: { id: clip.id, name: clip.name }
+
+    WhisperTranscribeJob.perform_later(clip) if ENV['WHISPER_URL']
   end
 
   # PATCH/PUT /clips/1 or /clips/1.json

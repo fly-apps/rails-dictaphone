@@ -68,4 +68,6 @@ gem "pg", "~> 1.5"
 
 gem "dockerfile-rails", ">= 1.6", :group => :development
 
+gem "aws-sdk-s3", "~> 1.156", :require => false
+
 gem "sidekiq", "~> 7.3"

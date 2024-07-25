@@ -1,24 +1,29 @@
-# README
+# [Web Dictaphone](http://todomvc.com), adapted for [fly.io](https://fly.io/)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a fork of [mdn/dom-examples/media/web-dictaphone](https://github.com/mdn/dom-examples/tree/main/media/web-dictaphone#readme), with the following additions:
 
-Things you may want to cover:
+ * <a href="https://guides.rubyonrails.org/active_record_basics.html">Active Record</a> with a <a href="https://www.postgresql.org/">PostgreSQL</a> database to persist an ordered list of clips
+* <a href="https://edgeguides.rubyonrails.org/active_storage_overview.html">Active Storage</a> with a <a href="https://www.tigrisdata.com/">Tigris</a> bucket for storing audio files
+* <a href="https://turbo.hotwired.dev/handbook/streams">Turbo Stream</a> with <a href="https://upstash.com/">Upstash Redis</a> db and <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API">WebSockets</a> for broadcasting updates</a>
 
-* Ruby version
+With these changes multiple replicas of this application can be deployed, even in multiple regions.
 
-* System dependencies
 
-* Configuration
+# Deployment
 
-* Database creation
+In an empty directory, run:
 
-* Database initialization
+```
+fly launch --from https://github.com/fly-apps/rails-dictaphone.git
+```
 
-* How to run the test suite
+If you visit this application, you will see a standard web dictaphone example.
 
-* Services (job queues, cache servers, search engines, etc.)
+To create additional machines in other regions, run:
 
-* Deployment instructions
+```
+fly scale count 3 --region dfw,waw,syd
+```
 
-* ...
+Note: By default, all machines will be configured to [automatically stop and start](https://fly.io/docs/apps/autostart-stop/).
+

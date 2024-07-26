@@ -41,7 +41,7 @@ class ClipsController < ApplicationController
   def update
     respond_to do |format|
       if @clip.update(clip_params)
-        format.html { redirect_to clip_url(@clip), notice: "Clip was successfully updated." }
+        format.html { redirect_to clips_url, notice: "Clip was successfully updated." }
         format.json { render :show, status: :ok, location: @clip }
       else
         format.html { render :edit, status: :unprocessable_entity }

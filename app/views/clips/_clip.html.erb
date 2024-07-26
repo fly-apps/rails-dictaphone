@@ -1,6 +1,11 @@
-<article class="clip" id="<%= dom_id clip %>">
+<article class="clip" id="<%= dom_id clip %>" data-controller="sound-clip">
   <audio controls="" src="<%= clip.contents.url %>" preload="none"></audio>
-  <p><%= clip.name %></p>
+
+  <p data-sound-clip-target="name"><%= clip.name %></p>
+  <%= form_with(model: clip) do |form| %>
+    <%= form.text_field :name %>
+  <% end %>
+  
   <%= button_to "Delete", clip, method: :delete, class: "delete", form_class: 'delete' %>
   <p class="text"><%= clip.text %></p>
 </article>

@@ -86,6 +86,10 @@
   .clip {
     padding-bottom: 1rem;
   }
+
+  .clip form {
+    display: none;
+  }
   
   audio {
     width: 100%;
